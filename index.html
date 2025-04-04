@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitLife AI - Your Fitness Companion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+        </svg>
+        <span>FitLife AI</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#food-tracker">Food Tracker</a></li>
+        <li><a href="#workouts">Workouts</a></li>
+        <li><a href="#meal-planner">Meal Planner</a></li>
+        <li><a href="#ai-coach">AI Coach</a></li>
+        <li><a href="#profile">Profile</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Transform Your Life with FitLife AI</h1>
+        <p>Your personalized AI-powered fitness and nutrition coach</p>
+        <div class="hero-buttons">
+          <a href="#dashboard" class="btn btn-primary">View Dashboard</a>
+          <a href="#ai-coach" class="btn btn-secondary">Talk to AI Coach</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="dashboard">
+      <h2>Dashboard</h2>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-icon calories">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M2 12h20"></path>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <h3>Daily Calories</h3>
+            <p class="stat-value" id="calorie-count">0</p>
+            <p class="stat-subtitle">of <span id="calorie-goal">2,500</span> goal</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon weight">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M2 12h20"></path>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <h3>Current Weight</h3>
+            <p class="stat-value" id="current-weight">0</p>
+            <p class="stat-subtitle"><span id="weight-change">0</span> lbs this month</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon workouts">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <h3>Workouts</h3>
+            <p class="stat-value" id="workout-count">0</p>
+            <p class="stat-subtitle">this month</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon progress">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <h3>Goal Progress</h3>
+            <p class="stat-value" id="goal-progress">0%</p>
+            <p class="stat-subtitle">towards target weight</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="food-tracker" class="food-tracker">
+      <h2>Food Tracker</h2>
+      <div class="meal-sections">
+        <div class="meal-card" data-meal-type="breakfast">
+          <h3>Breakfast</h3>
+          <ul class="meal-list" id="breakfast-list"></ul>
+          <button class="add-food-btn" onclick="openFoodModal('breakfast')">+ Add Food</button>
+        </div>
+
+        <div class="meal-card" data-meal-type="lunch">
+          <h3>Lunch</h3>
+          <ul class="meal-list" id="lunch-list"></ul>
+          <button class="add-food-btn" onclick="openFoodModal('lunch')">+ Add Food</button>
+        </div>
+
+        <div class="meal-card" data-meal-type="dinner">
+          <h3>Dinner</h3>
+          <ul class="meal-list" id="dinner-list"></ul>
+          <button class="add-food-btn" onclick="openFoodModal('dinner')">+ Add Food</button>
+        </div>
+
+        <div class="meal-card" data-meal-type="snacks">
+          <h3>Snacks</h3>
+          <ul class="meal-list" id="snacks-list"></ul>
+          <button class="add-food-btn" onclick="openFoodModal('snacks')">+ Add Food</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai-coach" class="ai-coach">
+      <div class="ai-coach-container">
+        <h2>AI Coach</h2>
+        <div class="coach-interface">
+          <div class="chat-container">
+            <div class="chat-messages" id="chat-messages">
+              <div class="message coach">
+                <div class="avatar">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 16v-4"/>
+                    <path d="M12 8h.01"/>
+                  </svg>
+                </div>
+                <div class="message-content">
+                  <p>Hello! I'm your AI Fitness Coach. How can I help you today?</p>
+                  <div class="quick-replies">
+                    <button onclick="selectQuery('workout')">Workout Plan</button>
+                    <button onclick="selectQuery('nutrition')">Nutrition Advice</button>
+                    <button onclick="selectQuery('goals')">Set Goals</button>
+                    <button onclick="selectQuery('progress')">Track Progress</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chat-input">
+              <form id="chat-form" onsubmit="return sendMessage(event)">
+                <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" class="send-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="coach-sidebar">
+            <div class="coach-features">
+              <h3>Features</h3>
+              <ul>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+                    <line x1="16" y1="8" x2="2" y2="22"/>
+                    <line x1="17.5" y1="15" x2="9" y2="15"/>
+                  </svg>
+                  Personalized Workout Plans
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                    <line x1="6" y1="1" x2="6" y2="4"/>
+                    <line x1="10" y1="1" x2="10" y2="4"/>
+                    <line x1="14" y1="1" x2="14" y2="4"/>
+                  </svg>
+                  Nutrition Guidance
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="20" x2="12" y2="10"/>
+                    <line x1="18" y1="20" x2="18" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="16"/>
+                  </svg>
+                  Progress Tracking
+                </li>
+              </ul>
+            </div>
+            <div class="coach-stats">
+              <h3>Your Progress</h3>
+              <div class="stat-item">
+                <span>Workouts Completed</span>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 75%"></div>
+                </div>
+                <span>15/20</span>
+              </div>
+              <div class="stat-item">
+                <span>Nutrition Goals</span>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 60%"></div>
+                </div>
+                <span>60%</span>
+              </div>
+              <div class="stat-item">
+                <span>Weight Goal</span>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 80%"></div>
+                </div>
+                <span>80%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Add Food Modal -->
+  <div id="food-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Add Food</h2>
+      <form id="add-food-form">
+        <input type="hidden" id="meal-type" name="meal-type">
+        <div class="form-group">
+          <label for="food-name">Food Name</label>
+          <input type="text" id="food-name" name="food-name" required>
+        </div>
+        <div class="form-group">
+          <label for="portion">Portion</label>
+          <input type="text" id="portion" name="portion" required>
+        </div>
+        <div class="form-group">
+          <label for="calories">Calories</label>
+          <input type="number" id="calories" name="calories" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="protein">Protein (g)</label>
+            <input type="number" id="protein" name="protein" required>
+          </div>
+          <div class="form-group">
+            <label for="carbs">Carbs (g)</label>
+            <input type="number" id="carbs" name="carbs" required>
+          </div>
+          <div class="form-group">
+            <label for="fat">Fat (g)</label>
+            <input type="number" id="fat" name="fat" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Food</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 FitLife AI. All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
