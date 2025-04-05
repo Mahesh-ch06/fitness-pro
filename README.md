@@ -1,4 +1,4 @@
-## Team Details - Batch 31
+## Team Details - Batch 31 & 32
 
 | Name      | Roll Number   |
 |-----------|---------------|
